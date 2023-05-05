@@ -19,12 +19,17 @@ export class CartService {
     }
   }
 
-  removeProductFromCart(): boolean {
+  removeProductFromCart(product: any): boolean {
+    this.cartList.filter((item: any) => item.id !== 2);
     return true;
   }
 
-  updateQuantityOfCartProduct(): boolean {
-    return true;
+  updateQuantityOfCartProduct(product: any): boolean {
+    if (this.productService.isProductQuantityAvailable(product)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   getCartTotal(): number {

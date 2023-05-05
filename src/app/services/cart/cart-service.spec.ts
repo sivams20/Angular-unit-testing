@@ -27,15 +27,29 @@ describe('CartService', () => {
 
   it('should check addProductToCart with true value', () => {
     productServiceSpy.isProductAvailable.and.returnValue(true);
-    expect(service.addProductToCart({ product: 'Product1', price: 1000 })).toBe(
+    expect(service.addProductToCart({ name: 'Product1', price: 1000 })).toBe(
       true
     );
   });
 
   it('should check addProductToCart with false value', () => {
     productServiceSpy.isProductAvailable.and.returnValue(false);
-    expect(service.addProductToCart({ product: 'Product1', price: 1000 })).toBe(
+    expect(service.addProductToCart({ name: 'Product1', price: 1000 })).toBe(
       false
     );
+  });
+
+  it('should check updateQuantityOfCartProduct with true value', () => {
+    productServiceSpy.isProductQuantityAvailable.and.returnValue(true);
+    expect(
+      service.updateQuantityOfCartProduct({ name: 'Product1', price: 1000 })
+    ).toBe(true);
+  });
+
+  it('should check updateQuantityOfCartProduct with false value', () => {
+    productServiceSpy.isProductAvailable.and.returnValue(false);
+    expect(
+      service.updateQuantityOfCartProduct({ name: 'Product1', price: 1000 })
+    ).toBe(false);
   });
 });

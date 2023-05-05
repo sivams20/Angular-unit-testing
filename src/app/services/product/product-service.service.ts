@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class ProductService {
   productList = [
-    { product: 'Product1', price: 1000 },
-    { product: 'Product 2', price: 3000 },
+    { id: 1, name: 'Product1', price: 1000 },
+    { id: 2, name: 'Product 2', price: 3000 },
   ];
 
   constructor() {}
