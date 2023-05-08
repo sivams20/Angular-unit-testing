@@ -52,4 +52,14 @@ describe('CartService', () => {
       service.updateQuantityOfCartProduct({ name: 'Product1', price: 1000 })
     ).toBe(false);
   });
+
+  it('should check cart should be empty initially', () => {
+    expect(service.cartList.length).toBe(0);
+  });
+
+  it('should check cart should be updated', () => {
+    productServiceSpy.isProductAvailable.and.returnValue(true);
+    service.addProductToCart({ name: 'Product1', price: 1000 });
+    expect(service.cartList.length).toBe(1);
+  });
 });
