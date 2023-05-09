@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'sortBy',
 })
 export class SortByPipe implements PipeTransform {
-  transform(value: any[], order = 'asc', column: string = ''): any[] {
+  transform(value: any[], order: string = 'asc', column: string = 'id'): any[] {
     if (!value || order === '' || !order) {
       return value;
     } // no array
@@ -14,12 +14,11 @@ export class SortByPipe implements PipeTransform {
       } else {
         return value.sort().reverse();
       }
-    } // sort 1d array
-    if (value.length <= 1) {
-      return value;
-    } // array with only one item
-    //return orderBy(value, [column], [order]);
-    if (value.length && column !== '') {
+    }
+    // if (value.length <= 1) {
+    //   return value;
+    // } // array with only one item
+    if (value.length) {
       let numberArray = [];
       let stringArray = [];
       numberArray = value

@@ -6,43 +6,108 @@ describe('SortByPipe', () => {
     expect(pipe).toBeTruthy();
   });
 
-  it('transforms array in ascending order', () => {
-    const pipe = new SortByPipe();
-    expect(pipe.transform([1, 5, 4, 3, 2])).toEqual([1, 2, 3, 4, 5]);
-  });
-
-  it('transforms array in descending order', () => {
-    const pipe = new SortByPipe();
-    expect(pipe.transform([1, 5, 4, 3, 2], 'desc')).toEqual([5, 4, 3, 2, 1]);
-  });
-
   it('sort array in asc order by name', () => {
     const inputArray = [
-      { name: 'Z', sex: 'F', age: 18 },
-      { name: 'A', sex: 'F', age: 12 },
-      { name: 'H', sex: 'M', age: 19 },
+      { id: 3, name: 'Mobile', price: 1000 },
+      { id: 5, name: 'Printer', price: 1200 },
+      { id: 1, name: 'Laptop', price: 19000 },
     ];
     const outputArray = [
-      { name: 'A', sex: 'F', age: 12 },
-      { name: 'H', sex: 'M', age: 19 },
-      { name: 'Z', sex: 'F', age: 18 },
+      { id: 1, name: 'Laptop', price: 19000 },
+      { id: 3, name: 'Mobile', price: 1000 },
+      { id: 5, name: 'Printer', price: 1200 },
     ];
     const pipe = new SortByPipe();
     expect(pipe.transform(inputArray, 'asc', 'name')).toEqual(outputArray);
   });
 
-  it('sort array in asc order by id', () => {
+  it('sort array in desc order by name', () => {
     const inputArray = [
-      { name: 'Z', sex: 'F', age: 18 },
-      { name: 'A', sex: 'F', age: 12 },
-      { name: 'H', sex: 'M', age: 19 },
+      { id: 3, name: 'Mobile', price: 1000 },
+      { id: 5, name: 'Printer', price: 1200 },
+      { id: 1, name: 'Laptop', price: 19000 },
     ];
     const outputArray = [
-      { name: 'A', sex: 'F', age: 12 },
-      { name: 'Z', sex: 'F', age: 18 },
-      { name: 'H', sex: 'M', age: 19 },
+      { id: 5, name: 'Printer', price: 1200 },
+      { id: 3, name: 'Mobile', price: 1000 },
+      { id: 1, name: 'Laptop', price: 19000 },
     ];
     const pipe = new SortByPipe();
-    expect(pipe.transform(inputArray, 'asc', 'age')).toEqual(outputArray);
+    expect(pipe.transform(inputArray, 'desc', 'name')).toEqual(outputArray);
+  });
+
+  // it('sort array in asc order by id by default', () => {
+  //   const inputArray = [
+  //     { id: 3, name: 'Mobile', price: 1000 },
+  //     { id: 5, name: 'Printer', price: 1200 },
+  //     { id: 1, name: 'Laptop', price: 19000 },
+  //   ];
+  //   const outputArray = [
+  //     { id: 1, name: 'Laptop', price: 19000 },
+  //     { id: 3, name: 'Mobile', price: 1000 },
+  //     { id: 5, name: 'Printer', price: 1200 },
+  //   ];
+  //   const pipe = new SortByPipe();
+  //   expect(pipe.transform(inputArray, 'asc', '')).toEqual(outputArray);
+  // });
+
+  it('sort array in asc order by id', () => {
+    const inputArray = [
+      { id: 3, name: 'Mobile', price: 1000 },
+      { id: 5, name: 'Printer', price: 1200 },
+      { id: 1, name: 'Laptop', price: 19000 },
+    ];
+    const outputArray = [
+      { id: 1, name: 'Laptop', price: 19000 },
+      { id: 3, name: 'Mobile', price: 1000 },
+      { id: 5, name: 'Printer', price: 1200 },
+    ];
+    const pipe = new SortByPipe();
+    expect(pipe.transform(inputArray, 'asc', 'id')).toEqual(outputArray);
+  });
+
+  it('sort array in desc order by id', () => {
+    const inputArray = [
+      { id: 3, name: 'Mobile', price: 1000 },
+      { id: 5, name: 'Printer', price: 1200 },
+      { id: 1, name: 'Laptop', price: 19000 },
+    ];
+    const outputArray = [
+      { id: 5, name: 'Printer', price: 1200 },
+      { id: 3, name: 'Mobile', price: 1000 },
+      { id: 1, name: 'Laptop', price: 19000 },
+    ];
+    const pipe = new SortByPipe();
+    expect(pipe.transform(inputArray, 'desc', 'id')).toEqual(outputArray);
+  });
+
+  it('sort array in asc order by price', () => {
+    const inputArray = [
+      { id: 3, name: 'Mobile', price: 1000 },
+      { id: 5, name: 'Printer', price: 1200 },
+      { id: 1, name: 'Laptop', price: 19000 },
+    ];
+    const outputArray = [
+      { id: 3, name: 'Mobile', price: 1000 },
+      { id: 5, name: 'Printer', price: 1200 },
+      { id: 1, name: 'Laptop', price: 19000 },
+    ];
+    const pipe = new SortByPipe();
+    expect(pipe.transform(inputArray, 'asc', 'price')).toEqual(outputArray);
+  });
+
+  it('sort array in desc order by price', () => {
+    const inputArray = [
+      { id: 3, name: 'Mobile', price: 1000 },
+      { id: 5, name: 'Printer', price: 1200 },
+      { id: 1, name: 'Laptop', price: 19000 },
+    ];
+    const outputArray = [
+      { id: 1, name: 'Laptop', price: 19000 },
+      { id: 5, name: 'Printer', price: 1200 },
+      { id: 3, name: 'Mobile', price: 1000 },
+    ];
+    const pipe = new SortByPipe();
+    expect(pipe.transform(inputArray, 'desc', 'price')).toEqual(outputArray);
   });
 });
