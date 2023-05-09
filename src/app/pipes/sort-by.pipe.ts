@@ -19,6 +19,22 @@ export class SortByPipe implements PipeTransform {
       return value;
     } // array with only one item
     //return orderBy(value, [column], [order]);
+    if (value.length && column !== '') {
+      let numberArray = [];
+      let stringArray = [];
+      numberArray = value
+        .filter((item) => typeof item[column] === 'number')
+        .sort((a, b) => a[column] - b[column]);
+      stringArray = value
+        .filter((item) => typeof item[column] === 'string')
+        .sort((a, b) => {
+          if (a[column] < b[column]) return -1;
+          else if (a[column] > b[column]) return 1;
+          else return 0;
+        });
+      const sorted = numberArray.concat(stringArray);
+      return order === 'asc' ? sorted : sorted.reverse();
+    }
     return value;
   }
 }
