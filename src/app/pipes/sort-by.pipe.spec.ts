@@ -125,4 +125,42 @@ describe('SortByPipe', () => {
     const pipe = new SortByPipe();
     expect(pipe.transform(inputArray, 'desc', 'price')).toEqual(outputArray);
   });
+
+  it('sort array in asc and if name is empty it should be at first element', () => {
+    const inputArray = [
+      { id: 3, name: 'Mobile', price: 1000 },
+      { id: 1, name: '', price: 100 },
+      { id: 5, name: 'Printer', price: 1200 },
+    ];
+    const outputArray = [
+      { id: 1, name: '', price: 100 },
+      { id: 3, name: 'Mobile', price: 1000 },
+      { id: 5, name: 'Printer', price: 1200 },
+    ];
+    const pipe = new SortByPipe();
+    expect(pipe.transform(inputArray, 'asc', 'name')).toEqual(outputArray);
+  });
+
+  it('check array size is same as sorted array size', () => {
+    const inputArray = [
+      { id: 3, name: 'Mobile', price: 1000 },
+      { id: 5, name: 'Printer', price: 1200 },
+      { id: 1, name: 'Laptop', price: 19000 },
+    ];
+    const outputArray = [
+      { id: 3, name: 'Mobile', price: 1000 },
+      { id: 5, name: 'Printer', price: 1200 },
+      { id: 1, name: 'Laptop', price: 19000 },
+    ];
+    const pipe = new SortByPipe();
+    expect(pipe.transform(inputArray, 'asc', 'price')).toEqual(outputArray);
+    expect(inputArray.length).toBe(outputArray.length);
+  });
+
+  // it('check array size is same as sorted array size', () => {
+  //   const inputArray = any[];
+  //   const outputArray = any[];
+  //   const pipe = new SortByPipe();
+  //   expect(pipe.transform(inputArray, 'asc', 'price')).toEqual(outputArray);
+  // });
 });
