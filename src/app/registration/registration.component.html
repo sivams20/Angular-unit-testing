@@ -1,0 +1,24 @@
+<div class="container">
+  <form [formGroup]="registraionForm">
+    <label for="name">email</label>
+    <input type="text" id="email" formControlName="email" />
+
+    <label for="email">password</label>
+    <input type="password" id="password" formControlName="password" />
+
+    <label for="email">confirm password</label>
+    <input
+      type="password"
+      id="confirmpassword"
+      formControlName="confirmpassword"
+    />
+    <button
+      type="submit"
+      value="Submit"
+      [disabled]="this.registraionForm.invalid"
+      (click)="onSubmit()"
+    >
+      Submit
+    </button>
+  </form>
+</div>
